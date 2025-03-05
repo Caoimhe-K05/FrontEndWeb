@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 export class AppComponent implements OnInit{
   students:any[]=[];//creating student array
   weather:any[]=[];//creating the weather array
+  temperature:any="";//creating value to hold temperature
   constructor(private dataService:DataService){//adding dataService as an argument
 
   }
@@ -29,6 +30,7 @@ export class AppComponent implements OnInit{
     this.dataService.getWeatherdata().subscribe(
       (data)=>{
         this.weather = data.weather;//pulling thr data directly from the student array
+        this.temperature = (data.main.temp - 273.15).toFixed(2);//temp in kelvin, fixing it to display temp in celcius 
       }
     )
   }
